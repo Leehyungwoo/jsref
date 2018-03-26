@@ -8,6 +8,7 @@
     + new Number(true) 면 1로 변환후 반환
     + new Number('ABC') 파라미터 값이 숫자로 반환할 수 없으면 NaN으로 반환
 <br/>
+
 ##Number()
 
 + 개요
@@ -20,6 +21,7 @@
     + Number(0x14) 16진수를 10진수로 변환하여 반환
 
 <br/>
+
 ##parseInt()와의 차이
 
 + Number()와 parseInt().parseFloat() 차이 
@@ -102,6 +104,7 @@
 
 
 ##length
+
 + 개요
     + 배열의 엘리먼트 수 반환
     + [1,2,3]에서 마지막 인덱스는 2이고 length값은 3
@@ -112,6 +115,7 @@
 
 
 ##delete
+
 + 오브젝트에서 프로퍼티 삭제
 + 삭제에 성공하면 true 실패하면 false
 + 프로퍼티는 삭제 가능하나 변수는 삭제 불가능.
@@ -250,6 +254,7 @@ console.log(result2)
 ```
 
 ##push
+
 ```javascript
 var value = [1,2,3];
 var len = value.push('456');
@@ -258,6 +263,7 @@ console.log(len)
 ```
 
 ##unshift
+
 ```javascript
 var value = [1,2,3];
 var len =value.unshift(45);
@@ -269,6 +275,7 @@ console.log(value)
 ```
 
 ##join
+
 + 엘리먼트와 분리자를 하나씩 결합하고
     + 문자열로 연결하여 반환
 + [0]번 인덱스에 이어서 분리자 연결
@@ -309,6 +316,7 @@ console.log(value)
 ```
 
 ##shift
+
 + 배열의 첫 번째 엘리먼트 삭제하고
   삭제한 엘리먼트 반환
 
@@ -324,6 +332,7 @@ console.log(value)
 
 
 ##sort
+
 + 배열의 엘리먼트 값을 승순(가나다순)으로 정렬하여 반환
 + 정렬기준
     + 정렬 기준은 엘리먼트 값의 Unicode
@@ -376,6 +385,7 @@ sort 결과를 보면 사람들이 생각 하는것과 다름
 ```
 
 ##reverse
+
 + 역순으로 바꿈 
 ```javascript
 var value = [1,3,7,6]
@@ -387,11 +397,13 @@ console.log(result)
 ```
 
 ##slice
+
 + 첫번째 파라미터의 인덱스부터 두번째 파라미터의 인덱스 직전까지 엘리먼트 반환
 + 파라미터를 적지않으면 전체 반환(배열복사)
 
 
 ##splice
+
 + 개요
     + 배열에서 엘리먼트를 삭제하고 삭제한 엘리먼트 반환
     + 새로운 엘리먼트 삽입
@@ -401,8 +413,11 @@ console.log(result)
 
 <br/>
 <br/>
+
 #es5
-### 메서드를 시멘틱하게 사용하여야한다. 
+
+### 메서드를 시멘틱하게 사용하여야한다.
+
 ※배열에서 아래것(시멘틱한 메서드)이 없을경우 반복문을 사용
 
 
@@ -434,6 +449,7 @@ console.log(Array.isArray[1,2])
 
 
 ##forEach
+
 + 개요
     + [1,2].forEach(function(element,index,list){...})
     + 배열 엘리먼트를 하나씩 읽어가면서 콜백 함수 호출
@@ -564,6 +580,7 @@ result에 true가 설정되고
 
 
 ## filter()
+
 + 개요
     + <code>var newArray = arr.filter(callback[, thisArg])</code>
     + 콜백 함수에서 true 를 반환했을 때의 엘리먼트 값을 배열로 묶어서 반환
@@ -578,6 +595,7 @@ console.log(result)
 ```
 
 ##map
+
 + forEach와 같으나, 반환값이 없다
 + map은 맵핑이다
 ```javascript
@@ -588,6 +606,7 @@ var result =[10,20,30].map(function(el,index,list){
 ```
 
 ##reduce
+
 + 개요
     + 배열 끝까지 콜백함수를 호출하고 콜백함수에서 반환한 값을 반환
     + 두번째 파라미터를 작성하면 처리가 나름
@@ -600,6 +619,7 @@ var result = value.reduce(function(previous,current,index,all){
 })
 ```
 ##reduceRight
+
 + 개요
     + reduce와 같으나 오른쪽부터
 
@@ -612,6 +632,7 @@ var result = value.reduceRight(function(previous,current,index,all){
 ```
 
 ##indexOf()
+
 + 개요
     + 파라미터값과 일치하는 엘리먼트의 인덱스 값을 반환
     + 왼쪽에서 오른쪽으로 검색
@@ -628,4 +649,5 @@ console.log(valu*e.indexOf('3'))
 ```
 
 ##lastIndexOF()
+
 +indexOf와 같으나 오른쪽부터

@@ -50,7 +50,7 @@
     + Numbre 오브젝트의 toString()은 문자열로 변환
 
 <br/>
-## valueof
+## valueof()
 + Number 인스턴스의 프리미티브값 반환 
 
 <br/>
@@ -240,7 +240,7 @@ console.log([['가','나'],['다','라']].toString())
 
 ```
 
-## concat , isArray
+## concat() , isArray()
 ```javascript
 var value = [1,2]
 var result =value.concat(3,4)
@@ -253,7 +253,7 @@ var result2 = value.concat([5,6],[7,8])
 console.log(result2)
 ```
 
-## push
+## push()
 
 ```javascript
 var value = [1,2,3];
@@ -262,7 +262,7 @@ console.log(value)
 console.log(len)
 ```
 
-## unshift
+## unshift()
 
 ```javascript
 var value = [1,2,3];
@@ -274,7 +274,7 @@ console.log(value)
 
 ```
 
-## join
+## join()
 
 + 엘리먼트와 분리자를 하나씩 결합하고
     + 문자열로 연결하여 반환
@@ -304,7 +304,7 @@ console.log(value.join(''));
 ```
 
 
-## pop
+## pop()
 
 ```javascript
 var value = [1,2,345]
@@ -315,7 +315,7 @@ console.log(value)
 
 ```
 
-## shift
+## shift()
 
 + 배열의 첫 번째 엘리먼트 삭제하고
   삭제한 엘리먼트 반환
@@ -331,7 +331,7 @@ console.log(value)
 ```
 
 
-## sort
+## sort()
 
 + 배열의 엘리먼트 값을 승순(가나다순)으로 정렬하여 반환
 + 정렬기준
@@ -384,7 +384,7 @@ sort 결과를 보면 사람들이 생각 하는것과 다름
 */
 ```
 
-## reverse
+## reverse()
 
 + 역순으로 바꿈 
 ```javascript
@@ -396,13 +396,13 @@ console.log(result)
 
 ```
 
-## slice
+## slice()
 
 + 첫번째 파라미터의 인덱스부터 두번째 파라미터의 인덱스 직전까지 엘리먼트 반환
 + 파라미터를 적지않으면 전체 반환(배열복사)
 
 
-## splice
+## splice()
 
 + 개요
     + 배열에서 엘리먼트를 삭제하고 삭제한 엘리먼트 반환
@@ -414,7 +414,7 @@ console.log(result)
 <br/>
 <br/>
 
-#es5
+#es5()
 
 ## # 메서드를 시멘틱하게 사용하여야한다.
 
@@ -436,7 +436,7 @@ lastIndexOf| 지정한 값에 일치하는 엘리먼트 인덱스 반환 배열 
 
 
 
-## isArray
+## isArray()
 
 ```javascript
 /* typeof array를 검사하면 "object"가 반환되었는데 es5 isArray의 등장으로 구분이 손쉬워졌다.*/
@@ -448,7 +448,7 @@ console.log(Array.isArray[1,2])
 ```
 
 
-## forEach
+## forEach()
 
 + 개요
     + [1,2].forEach(function(element,index,list){...})
@@ -519,7 +519,7 @@ console.timeEnd()
 ```
 
 
-#every
+#every()
 
 + 배열 엘리먼트를 하나씩 읽어가면서 반환값이 false가 될때까지 콜백함수 호출
 + 콜백 함수에 엘리먼트 값, 인덱스,전체 배열을 넘겨줌
@@ -551,8 +551,10 @@ false를 반환하면 반복을 종료하므로
 
 
 ```
-## #중간에 반환이 멈출 배열이면 every,some   끝까지갈 배열이면 forEach
-#some
+## 중간에 반환이 멈출 배열이면 every,some   끝까지갈 배열이면 forEach
+
+##some()
+
 + 배열 엘리먼트를 하나씩 읽어가면서 반환값이 true가 될때까지 콜백 함수 호출
 + 콜백함수에 엘리먼트 값,인덱스,전체 배열을 넘겨줌
 + 콜백함수에서 true를 반환하지 않으면 디폴트로 false 반환
@@ -579,7 +581,7 @@ result에 true가 설정되고
 ```
 
 
-##  filter()
+## filter()
 
 + 개요
     + <code>var newArray = arr.filter(callback[, thisArg])</code>
@@ -594,7 +596,7 @@ var reulst = [10,20,30,40].filter(function(el,index,list){
 console.log(result)
 ```
 
-## map
+## map()
 
 + forEach와 같으나, 반환값이 없다
 + map은 맵핑이다
@@ -605,7 +607,7 @@ var result =[10,20,30].map(function(el,index,list){
 
 ```
 
-## reduce
+## reduce()
 
 + 개요
     + 배열 끝까지 콜백함수를 호출하고 콜백함수에서 반환한 값을 반환
@@ -618,7 +620,7 @@ var result = value.reduce(function(previous,current,index,all){
     return previous + current
 })
 ```
-## reduceRight
+## reduceRight()
 
 + 개요
     + reduce와 같으나 오른쪽부터

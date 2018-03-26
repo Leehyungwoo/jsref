@@ -8,7 +8,7 @@
     + new Number(true) 면 1로 변환후 반환
     + new Number('ABC') 파라미터 값이 숫자로 반환할 수 없으면 NaN으로 반환
 <br/>
-## Number()
+##Number()
 
 + 개요
     + 파라미터 값을 숫자 값으로 반환
@@ -20,7 +20,7 @@
     + Number(0x14) 16진수를 10진수로 변환하여 반환
 
 <br/>
-## parseInt()와의 차이
+##parseInt()와의 차이
 
 + Number()와 parseInt().parseFloat() 차이 
 + 공통적 목적

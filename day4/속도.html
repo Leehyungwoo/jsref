@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <ul id="a">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+  </ul>
+  
+  
+  
+  <script>
+
+  /*단점:함수 2번실행*/
+  /*단점:dom HTMLCOLlection 배열로 반환해도 forEach 적용불가*/
+
+/*
+	var a = document.getElementById('a')
+	var li = a.children;
+	li.forEach(function(a,b,c){
+			console.log(a,b,c)
+	})
+*/	
+
+
+var book = function(){}
+var arr = []
+
+for(var i = 0; i<1000000; i++){
+	arr[i]=i;
+}
+
+console.log(arr)
+
+
+console.time()
+var start = Date.now()
+
+arr.forEach(function(a,b,c){
+	book()
+},this)
+
+
+console.log("계산식",Date.now()-start)
+console.timeEnd()
+
+
+  </script>
+ </body>
+</html>

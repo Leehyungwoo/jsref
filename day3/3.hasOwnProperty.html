@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+/*자신의 것. 내가만든건 true이고 상속받은건 false*/
+
+ var obj = new Object();
+ obj.value=123;
+//  1.생성한 인스턴스에 
+//  -프로퍼티 이름(value)과 값(123)을 설정한다
+
+ obj.hasOwnProperty('value');
+//  1.인스턴스에 직접 value 프로퍼티를 설정했으므로
+//  -자신이 작성한 것이 되어 true 반환
+
+ obj.undef = undefined;
+ obj.hasOwnProperty('udef')
+//  1.값은 체크하지않고
+//  -프로퍼티의 존재 여부만 체크하므로 true 반환
+
+obj.hasOwnProperty('hasOwnProperty');
+// 1. obj는 Object.prototype에
+// -연결된 메소드로 생성한 인스턴스
+
+// 2.hasOwnProperty()는 자신이 작성한 것이 아니라
+// -Object.prototype에 작성된것이므로 false 반환
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+new Number(123).valueOf();
+/*
+     1.Number 인스턴스는
+     -자체에 valueOf()를 가지고 있으므로
+     2.Number.prototype.valueOf()가 호출되며 
+     -프리미티브 값을 반환한다.
+     (메소드체인)
+*/
+ new Object().valueOf();
+//  1.Object 오브젝트는 프리미티브 값을 제공하지 않으므로
+//  - 생성한 인스턴스를 문자열로 변환하여 반환한다.
+
+
+
+</script>
+
+
+</body>
+</html>

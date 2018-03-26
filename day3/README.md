@@ -13,6 +13,7 @@
 <br/>
 
 #toString()
+
 구분|타입|데이터(값)|
 ---|----|---------|
 object|instance|변환대상
@@ -38,6 +39,7 @@ object|instance|변환대상
 <br/>
 
 #valueOf()
+
 구분|타입|데이터(값)|
 ---|----|---------|
 object|instance|대상 인스턴스
@@ -60,6 +62,7 @@ object|instance|대상 인스턴스
 <br/>
 
 #hasOwnproperty()
+
 구분|타입|데이터(값)|
 ---|----|---------|
 object|instance|기준 인스턴스

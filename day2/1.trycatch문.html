@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+
+  /* 서버와 통신하거나 에러가 발생할 가능성이있을때 사용*/
+  var sports,result;
+   
+   try{
+	console.log('try')
+	sports = baseball;   //이것의 오류로인해 catch로 향한다.
+   } catch(err){
+	result="error";
+	console.log('+++ERROR+++',err)
+	console.log('catch')
+   } finally{				//finally는 무조건실행
+	console.log('finally')
+	console.log(result)
+   }
+  </script>
+ </body>
+</html>

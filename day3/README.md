@@ -1,4 +1,4 @@
-## 함수와 메서드
+#함수와 메서드
 + 함수와 메소드 구분
     + 함수: 오브젝트에 연결
     + 예: **Object**.create
@@ -12,9 +12,8 @@
 
 <br/>
 
-## toString()
-
-구분|타입|데이터(값)|
+#toString()
+구분|타입|데이터(값)
 ---|----|---------|
 object|instance|변환대상
 파라미터|Any|사용불가
@@ -38,9 +37,8 @@ object|instance|변환대상
 
 <br/>
 
-## valueOf()
-
-구분|타입|데이터(값)|
+#valueOf()
+구분|타입|데이터(값)
 ---|----|---------|
 object|instance|대상 인스턴스
 파라미터|Any|사용불가
@@ -61,9 +59,8 @@ object|instance|대상 인스턴스
 
 <br/>
 
-## hasOwnproperty()
-
-구분|타입|데이터(값)|
+#hasOwnproperty()
+구분|타입|데이터(값)
 ---|----|---------|
 object|instance|기준 인스턴스
 파라미터|String|프로퍼티 이름
@@ -84,7 +81,7 @@ object|instance|기준 인스턴스
 
 <br/>
 
-## prototype chain
+#prototype chain
 + 개요
     1.prototype에 오브젝트를 연결하고
     + 연결된 오브젝트의 prototype에 다시 오브젝트를 연결
@@ -109,7 +106,7 @@ object|instance|기준 인스턴스
 
 <br/>
 
-## global object
+#global object
 
 + 글로벌 오브젝트
     + 빌트인 오브젝트
@@ -125,7 +122,7 @@ object|instance|기준 인스턴스
 
 <br/>
 
-## global object의 특징
+#global object의 특징
 
 + new 생성자로 호출 불가
     1. 인스턴스를 생성 할 수 없음

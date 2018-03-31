@@ -284,3 +284,315 @@ random() |0이상 1미만의 수
 + 일은 1에서 31일까지 정수로 표시
 + 요일은 0부터 시작 0:일요일  1:월요일 6:토요일
 + Date오브젝트로 값을 수할때 숫자가 아니면 NaN반환
+
+
+
+```javascript
+console.log(new Date(2018,11,33))
+
+//월일시분초 범위를 넘치면 상위 일자에 반영한다
+//11월 33일을 작성하면 30일이 넘침으로 3을남기고 월에 1일 더한다
+
+//월에 더한 결과가 11이 넘으면 다시 연도값에 1일 더한다
+//- 또한 12월 31일에서 일을 33에 적용하면 2가 남는다.
+//캘린더 라이브러리가 이런식
+```
+
+
+
+# es5 object
+
++ Object 오브젝트
+    + 추가된 것은 모두 함수이며 메소드 없음
+    + new로 생성한 인스턴스에 함수가 할당되지 않으므로
+    + 함수에 값을 파라미터로 넘겨주어 처리
+
++ 인스턴스 생성 목적
+    + 프로퍼티 이름은 같지만 인스턴스마다 다른 값을 가지려는것
+    + Object.prototype에 연결된 메소드는 모든 빌트인 오브젝트에 상속
+    + 상속할 필요가 없을 때는 함수가 효율적
+
++ Object 객체(오브젝트)에 추가된 함수는 이런 사상
+
++ Object는 모든 빌트인 오브젝트에 상속된다.
+
+
+
+# defineProperty
+
++ 프로퍼티 값이 변경되지않음
+
+```javascript
+var obj ={};
+Object.defineProperty(obj,'book',{
+value:123
+})
+console.log(obj)
+obj.book =456; //변경작업
+console.log('변경후',obj)
+```
+
+```javascript
+var obj ={};
+Object.defineProperty(obj,'book',{
+value:123
+})
+for(var name in obj){
+	console.log(name)
+}
+//obj를 읽어 프로퍼티 이름을 읽으려 하였으나 출력되지 않는것은 열거 불가
+```
+
++ 프로퍼티로 값 변경할수 있게하기
+
+```javascript
+var obj ={};
+Object.defineProperty(obj,'book',{
+value:123,
+enumerable:true
+})
+for(var name in obj){
+	console.log(name)
+}
+//enumerable:true 추가작성하여 열거 가능하도록 하기 때문.
+//디폴트값은 enumerable:false로 열거 불가
+```
+
+
+# getter, get속성 , 게터
+
+```javascript
+var obj = {};
+Object.defineProperty(obj,'book',{
+ get:function(){ return '책'}
+})
+var result = obj.book;
+console.log(result)
+```
+
+# setter, set속성, 세터
+
+```javascript
+  var bookValue,obj = {};
+Object.defineProperty(obj,'book',{
+ get:function(param){
+     bookValue=param;
+  },
+  set:function(){
+      return bookValue;
+  }
+})
+
+obj.book = 123;
+result = obj.book;
+console.log(result)
+```
+
+
+# getOwnPropertyDescriptor
+
+```javascript
+var obj = Object.defineProperty({},'book',{
+	value:'자바스크립트',
+	writable:true,
+	enumerable:true
+})
+
+
+// value 속성을 작성했으므로 데이터 프로퍼티 디스크립터
+
+var desc = Object.getOwnPropertyDescriptor(obj,'book');
+for(var key in desc){
+	console.log(key + ':' + desc[key])
+}
+
+//데이터 프로퍼티 디스크립터에 속하는 속성 이름과 속성 값을 반환
+
+```
+
+# getOwnPropertyNames
+
+```javascript
+var abc = {'a':'b','c':'d','e':'f'}
+
+console.log(Object.getOwnPropertyNames(abc))
+```
+
+# keys
+
+```javascript
+var abc = {'a':'b','c':'d','e':'f'}
+
+console.log(Object.kesy(abc))
+```
+
+# getPrototypeOf()
+
++ prototype 오브젝트에 연결된 프로퍼티 반환
+
+
+```javascript
+function Book(){
+	this.count = 123;
+};
+
+Book.prototype = {
+	getValue:function(){},
+	getAbount:function(){}
+};
+
+var obj = new Book();
+
+var result = Object.getPrototypeOf(obj);
+for(var key in result){
+	console.log(key)
+}
+
+```
+
+# preventExtensions()
+
++ 프로퍼티 추가 금지 설정
++ 삭제 변경은 가능
+
+```javascript
+function Book(){}
+
+Book.prototype.getValue = function(){}
+
+var obj = new Book();
+
+Object.preventExtensions(obj)
+
+obj.getAbount = function(){} // 에러가 발생하지 않지만 추가불가
+
+console.log(obj.getAbount) //undefined
+
+```
+
+
++ 프로퍼티 추가 금지 확인
+
+```javascript
+function Book(){}
+
+Book.prototype.getValue = function(){}
+
+var obj = new Book();
+console.log(Object.isExtensible(obj)) 
+Object.preventExtensions(obj)
+
+console.log(Object.isExtensible(obj)) 
+
+```
+
+
++ 새로운 속성을 추가할 수 없고, 현재 존재하는 모든 속성을 설정 불가능 상태로 만들어줍니다. 하지만 쓰기 가능한 속성의 값은 밀봉 후에도 변경할 수 있습니다
+
+```javascript
+var obj = Object.defineProperty({},'swim',{
+    value:'수영',
+    writable:true,
+    enumerable:true,
+    configuable:true
+});
+Object.seal(obj);
+
+
+try{
+    Object.defineProperty(obj,"baseball",{
+        value:'야구'
+    })
+
+} catch(e) {
+    console.log('추가불가 :baseball');
+}
+//프로퍼티를 추가할 수 없는 상태에서 추가하면 에러 발생
+
+delete obj.swim;
+
+console.log(obj.swim)
+
+
+```
+
+
+```javascript
+var obj = Object.defineProperty({},'swim',{
+    value:'수영',
+    writable:true,
+    enumerable:true,
+    configuable:true
+});
+
+console.log(Object.isSealed(obj)) // 추가 삭제 금지를 설정했으므로 false반환
+Object.seal(obj);
+console.log(Object.isSealed(obj)) // 추가 삭제 금지를 설정했으므로 true반환
+
+```
+
+
+
+```javascript
+
+var objOne = {};
+Object.defineProperty(objOne, 'music', {
+    value: '음악', 
+    writable: true
+});
+Object.seal(objOne);
+
+try {
+    Object.defineProperty(objOne, 'book', {
+        value: '책'
+    });
+} catch(e) {
+    console.log(e);
+    console.log('추가불가 : book');
+}
+console.log(objOne.book);
+
+
+/* param 값은 던져졌으나 this.book값이 추가되지 않는다.*/
+var objTwo ={
+    music:'음악',
+    add:function(param){
+        this.book = param;
+    }
+}
+Object.seal(objTwo);
+
+try{
+    objTwo.add('책')
+} catch(e) {
+    console.log('추가 불가:book')
+}
+
+console.log(objTwo.book);
+
+
+
+
+```
+
+# freeze()
+
+```javascript
+var obj = Object.defineProperty({},"swim",{
+    value:'수영',
+    writeable:true
+})
+
+Object.freeze(obj);
+
+
+try{
+    Object.defineProperty(obj,'swim',{
+        value:'값 변경'
+    })
+}catch(e){
+    console.log('value값 변경 불가')
+}
+
+```
+

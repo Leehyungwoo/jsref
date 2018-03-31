@@ -596,3 +596,15 @@ try{
 
 ```
 
+
+# isFrozen()
+
+```javascript
+var obj = Object.defineProperty({},"swim",{
+    value:'수영',
+    writeable:true
+})
+
+Object.freeze(obj);
+console.log(Object.isFrozen(obj))
+```

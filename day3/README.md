@@ -14,7 +14,7 @@
 
 #toString()
 구분|타입|데이터(값)
----|----|---------|
+---|----|---------
 object|instance|변환대상
 파라미터|Any|사용불가
 반환|String|변환결과
@@ -39,7 +39,7 @@ object|instance|변환대상
 
 #valueOf()
 구분|타입|데이터(값)
----|----|---------|
+---|----|---------
 object|instance|대상 인스턴스
 파라미터|Any|사용불가
 반환|String|변환결과
@@ -60,8 +60,9 @@ object|instance|대상 인스턴스
 <br/>
 
 #hasOwnproperty()
+
 구분|타입|데이터(값)
----|----|---------|
+---|----|---------
 object|instance|기준 인스턴스
 파라미터|String|프로퍼티 이름
 반환|Bollean|true,false

@@ -226,3 +226,61 @@ function getTotal(){
 }
 console.log(getTotal.apply(this,[10,20,30]))
 ```
+
+
+
+# Math
++ 수학용 함수 제공
++ 빌트인 오브젝트
++ 싱글톤: new로 인스턴스를 생성할수 없는 오브젝트
+    + 소프트웨어 디자인 패턴에서 싱글턴 패턴(Singleton pattern)을 따르는 클래스는, 생성자가 여러 차례 호출되더라도 실제로 생성되는 객체는 하나이고 최초 생성 이후에 호출된 생성자는 최초의 생성자가 생성한 객체를 리턴한다. 이와 같은 디자인 유형을 싱글턴 패턴이라고 한다. 주로 공통된 객체를 여러개 생성해서 사용하는 DBCP(DataBase Connection Pool)와 같은 상황에서 많이 사용된다.
+ 
++ Math,JSON 글로벌 오브젝트가 싱글 오브젝트
++ 함수가 prototype에 프로퍼티로 연결되어 있지 않고
++ Math 오브젝트에 직접 연결되어 있으므로 메소다가 아닌 함수
++ Math.round() 형태로 작성
+
+
+
+메서드|내용
+|-----|-------|
+abs()| 절대값 
+floor()|소수점 이하 버림
+ceil() |소수 이하 절상
+round() |소수 이하 반올림
+max() |최댓값
+min() |최솟값
+random() |0이상 1미만의 수
+
+
+
+```javascript
+
+    var arr = [];
+    var sum = null;
+	for(var i = 0 ; i < 10 ; i++){
+		len = Math.random();
+		arr.push(len);
+		sum += len;
+	}
+	console.log(arr)
+
+	console.log('최소'+Math.min.apply(this,arr));
+	console.log('최대'+Math.max.apply(this,arr));
+
+	console.log('최소'+Math.min(...arr))
+	console.log('최대'+Math.max(...arr))
+	console.log(sum/arr.length)
+```
+
+
+
+# Date
+
++ 년월일,시분초,밀리초 제공
++ 밀리초가 프리미티브 값, 시간값이라고도 부름
++ UTC 기준
++ 월은 0부터시작   0:1월  1:2월  11:12월
++ 일은 1에서 31일까지 정수로 표시
++ 요일은 0부터 시작 0:일요일  1:월요일 6:토요일
++ Date오브젝트로 값을 수할때 숫자가 아니면 NaN반환

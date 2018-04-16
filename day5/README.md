@@ -228,7 +228,6 @@ console.log(getTotal.apply(this,[10,20,30]))
 ```
 
 
-
 # Math
 + 수학용 함수 제공
 + 빌트인 오브젝트

@@ -1,4 +1,4 @@
-#함수와 메서드
+# 함수와 메서드
 + 함수와 메소드 구분
     + 함수: 오브젝트에 연결
     + 예: **Object**.create
@@ -48,9 +48,9 @@ object|instance|대상 인스턴스
 + 개요
     1. 오브젝트의 프리미티브 값 변환
     2. 프리미티브 값을 반환하는 오브젝트
-    + Bollean,Date,Number,String 오브젝트
+         + Bollean,Date,Number,String 오브젝트
     3. 4개 오브젝트는 자신의 valueOf()가 호출되고
-    + 다른 오브젝트는 Object.prototype.valueOf()가 호출된다
+         + 다른 오브젝트는 Object.prototype.valueOf()가 호출된다
     4. Object는 프리미티브값이 없으므로 인스턴스 타입을 문자열로 반환
 
 + 작성방법
@@ -71,9 +71,9 @@ object|instance|기준 인스턴스
 + 개요
     1. 인스턴스 소유의 프로퍼티 존재 여부 반환
     2. 인스턴스에 파라미터에 작성한 이름이 존재하면 true 반환
-    + 존재하지 않으면 false 반환
+         + 존재하지 않으면 false 반환
     3. 자신이 만든 것이 아니라
-    + 상속받은 프로퍼티이면 false 반환
+         + 상속받은 프로퍼티이면 false 반환
 
 + 작성방법
     + object 위치에 오브젝트가 아닌 인스턴스 작성
@@ -85,8 +85,8 @@ object|instance|기준 인스턴스
 
 # prototype chain
 + 개요
-    1.prototype에 오브젝트를 연결하고
-    + 연결된 오브젝트의 prototype에 다시 오브젝트를 연결
+    1. prototype에 오브젝트를 연결하고
+        + 연결된 오브젝트의 prototype에 다시 오브젝트를 연결
     2. 따라서 3개의 오브젝트가 여녈된 형태가 된다
     3. 이형태를 prototype chain 이라고 함
 + 연결
@@ -99,10 +99,10 @@ object|instance|기준 인스턴스
     + function soccer(){};
     + SPorts.prototype = new soccer(); <!-- 프로토타입체인 -->
 + new의 인스턴스 생성 기준
-    1.Sports.prototype = new Soccer();
-    - Soccer.prototype에 연결된 프로퍼티로 인스턴스 생성
-    2.var obj = new Sports();
-    - Sports.prototype에 연결된 프로퍼티로 인스턴스 생성
+    1. Sports.prototype = new Soccer();
+        - Soccer.prototype에 연결된 프로퍼티로 인스턴스 생성
+    2. var obj = new Sports();
+        - Sports.prototype에 연결된 프로퍼티로 인스턴스 생성
 + prototype Chain
     - prototype chain으로 인스턴스 연결       
 
@@ -111,16 +111,16 @@ object|instance|기준 인스턴스
 # global object
 
 + 글로벌 오브젝트
-    + 빌트인 오브젝트
++ 빌트인 오브젝트
 + 전체를 통해 하나만 존재
     1. 전체 기준
-    + 모든 script의 소스 코드 전체
+        + 모든 script의 소스 코드 전체
 + 오브젝트 실체 없음
     1. Number,Array는 오브젝트 실체 있음
-    + 오브젝트를 사용하여
-    + Number.concat(), Array.concat()형태로 호출
+        + 오브젝트를 사용하여
+        + Number.concat(), Array.concat()형태로 호출
     2. 글로벌 오브젝트는 오브젝트를 작성하지 못하고
-    + 함수 호출 및 변수에 접근
+        + 함수 호출 및 변수에 접근
 
 <br/>
 
@@ -128,9 +128,9 @@ object|instance|기준 인스턴스
 
 + new 생성자로 호출 불가
     1. 인스턴스를 생성 할 수 없음
-    + 따라서 메소드가 아닌 함수
+        + 따라서 메소드가 아닌 함수
     2. prototype 사용 여부는 엔진 개발자에게 일임
-    + prototype은 자바스크립트의 기본 구조 이기 때문
+        + prototype은 자바스크립트의 기본 구조 이기 때문
 + 함수, 프로퍼티,변수
     + 글로벌 오브젝트의 함수를 글로벌함수로
     + 프로퍼티/변수를 글로벌 프로퍼티/변수로 부름

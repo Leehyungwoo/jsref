@@ -184,3 +184,20 @@ document.getElementById('A').addEventListener('click',cbFunc)
 $('#a').on('click',cbFunc)
 ```
 
++ 콜백함수는 함수다. 메서드가 아니다
+```javascript
+
+var arr = [1,2,3,4,5];
+var obj ={
+    vals:[1,2,3],
+    logValues:function(v,i){
+        if(this.vals){
+            console.log(this.vals,v,i);
+        }else{
+            console.log(this,v,i)
+        }
+    }
+}
+obj.logValues(1,2);
+arr.forEach(obj.logValues);
+```

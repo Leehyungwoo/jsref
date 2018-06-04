@@ -177,7 +177,7 @@ aa.forEach(function(){
 document.body.innerHTML ='<div id="A">abc</div>'
 
 function cbFunc(x){
-	console.log(this,x) // click 이벤트 콜백함수의 this는 DOM.addEventListener에서 this는 DOM객체를 바인딩하고있기때문에 dom이 선택된다.
+	console.log(this,x) // click 이벤트 콜백함수의 this는 DOM.addEventListener에서 this는 DOM객체를 바인딩하고있기때문에 dom이 선택된다.  ecmascript 명세서에서, 이벤트 콜백의 this는 이벤트 타겟을 가르키도록 명세되어있다.
 }
 
 document.getElementById('A').addEventListener('click',cbFunc)

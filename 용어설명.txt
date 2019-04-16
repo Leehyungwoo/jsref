@@ -1,0 +1,7 @@
+큐:FIFO  (first in first out) 
+스택:LIFO (last in first out)  
+
+선형탐색(Linear Search) (앞에서부터 끝까지. ex for문)
+이진탐색(Binary Search) :반쪼개기 (조건:sort되어있어야함)
+
+ex Binary :이진법의

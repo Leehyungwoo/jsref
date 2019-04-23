@@ -13,7 +13,7 @@
 
     <script>
         //이런식으로 묶어서 관리할수있다.
-        var Person = (function () {
+        var Person = function (first, last) {
             function Person(first, last) {
                 this.first = first;
                 this.last = last;
@@ -24,8 +24,8 @@
             Person.prototype.fullNameReversed = function () {
                 return this.last + ', ' + this.first;
             }
-            return Person
-        })()
+            return new Person(first, last)
+        }
 
 
 

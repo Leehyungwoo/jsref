@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        //이런식으로 묶어서 관리할수있다.
+        var Person = (function () {
+            function Person(first, last) {
+                this.first = first;
+                this.last = last;
+            }
+            Person.prototype.fullName = function () {
+                return this.first + ' ' + this.last;
+            }
+            Person.prototype.fullNameReversed = function () {
+                return this.last + ', ' + this.first;
+            }
+            return Person
+        })()
+
+
+
+
+    </script>
+</body>
+
+</html>

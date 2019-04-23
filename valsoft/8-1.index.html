@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+
+        function Person(first, last) {
+            this.first = first;
+            this.last = last;
+        }
+        Person.prototype.fullName = function () {
+            return this.first + ' ' + this.last;
+        }
+        Person.prototype.fullNameReversed = function () {
+            return this.last + ', ' + this.first;
+        }
+
+
+        var p = new Person('a', 'b')
+
+        Object.prototype.full = function () {
+            console.log('object prototype full')
+        }
+
+        p.full()
+        //이것은 실행한 시점(!)에 __proto__를 타고가서 찾아서 실행한다.  p.__proto__.__proto__ 이런식으로 타고간다.
+
+
+        // 트림을 했을때 명시적으로 표시하는 방법. 그러나 전역에 등록되므로 주의를 요한다.
+        // String.prototype.oldTrim = String.prototype.trim
+
+        // String.prototype.trim = function () { 'trim' + String.prototype.oldTrim() }
+    </script>
+</body>
+
+</html>

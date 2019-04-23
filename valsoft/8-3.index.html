@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <script>
+        (function () {
+            var i, endi;
+
+            for (i = 0, endi = $('.a').length; i < endi; ++i) {
+                var target = $('.a')[i]
+                    (function (i) {
+
+                        $(target).click(function () {
+                            $(this).html(i)
+                        })
+                    })(i)
+            }
+        })()
+            (function () {
+                var M = function (selector) {
+                    var elements = $(selector)
+                    return {
+                        each: function (fn) {
+                            var i, len;
+
+                            for (i = 0, len = elements.length; i < len; i = i + 1) {
+                                fn.call(elements[i])
+                            }
+                        }
+                    }
+                }
+
+                M('.a').each(function () {
+                    console.log($(this).html())
+                })
+
+
+            })()
+
+
+    </script>
+</body>
+
+</html>

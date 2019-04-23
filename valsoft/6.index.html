@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        정의:스마트폰
+        선언:스마트폰을 가지고있다
+        실행:스마트폰 사용
+
+
+        정의가 있어야 선언할수가있다.
+        */
+
+
+
+        /*정의를 한다음에, f로 사용하겠다고 선언*/
+        // var f = function () {
+        //     console.log('function')
+        // }
+
+        // function f() {  /*정의와 선언이  동시에*/
+        //     console.log('function')
+        // }
+
+        // f()
+
+        // (function () {
+        //     console.log('익명함수')
+        // })() //익명함수.  정의는 사용하였는데 선언은? 연산자인() 로함.
+        // // 연산자는 마지막 값을 리턴한다.
+
+
+        // var a = 1;
+        // var b = 2;
+        // (function () {
+        //     var b = 3;
+        //     a += b;
+        //     console.log(a)
+        // })();
+
+        // (function () {
+        //     var b = 3;
+        //     a += b;
+        //     console.log(a)
+        // }());
+
+        // var f = function () { console.log('익명함수'); return 'f' }()
+        //-function(){console.log('-연산자가 붙은 익명함수'); return 1}()
+        //*function(){console.log('*연산자가 붙은 익명함수'); return 1}()  //이것은 항이 2개일경우가 원칙이라 안된다.
+
+        // (function () {
+        //     cosnole.log(1);
+        // }, function () {
+        //     console.log(2)
+        // })()
+        //선언을 했으나, console.log(1)을 호출을 하지않았다.   ,의 마지막값은 console.log(2)를 가지고있는 함수이다. 그래서 console.log(2)가 나온다.
+
+        // 왠만하면 파라미터를 사용하는것이 좋으나, 함수내에서 arguments를 사용할경우, 명확한 의도가 보이지 않기때문에, 함수 정의 맨윗부분에 arguments를 기명해주는것이 좋다.
+
+
+
+        // var a = {
+        //     a: 'hi',
+
+        //     b: function (ar1, ar2) {
+        //         console.log(this.a + ',' + ar1 + ',' + ar2)
+        //     }
+        // }
+
+
+        // var c = {
+        //     a: 'bye'
+        // }
+
+        // a.b.call(c, 1, 2)
+
+
+
+            // join은 자바스크립트 v8엔진에서 제공해주기때문에, 아래 문자열 스트링보다 빠르다
+            // 엔진에서 돌리는 로직은 속도가 월등히 빠르다.
+            // var a= [1,2,3]
+            // a.join('/');
+            // var a= 1+'/'+2+'/'+3 
+
+            // call,apply를 사용하려면 클래스의 멤버변수 선언을 잘해놓아야한다.
+
+
+    </script>
+</body>
+
+</html>

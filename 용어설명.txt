@@ -1,23 +1,43 @@
-ť:FIFO  (first in first out)  (unshift, shift)
-����:LIFO (last in first out)   (push,pop)
+﻿큐:FIFO  (first in first out)  (unshift, shift)
+스택:LIFO (last in first out)   (push,pop)
 
+선형탐색(Linear Search) (앞에서부터 끝까지. ex for문)
+이진탐색(Binary Search) :반쪼개기 (조건:sort되어있어야함)
 
-
-����Ž��(Linear Search) (�տ������� ������. ex for��)
-����Ž��(Binary Search) :���ɰ��� (����:sort�Ǿ��־����)
-
-ex Binary :��������
-
-
-
+ex Binary :이진법의
 
 
 var newobj = Object.create(obj)
 
-newobj�� ������Ÿ�Ը�ũ�� obj ����
-obj���� newobj�� ��ӹ���
+newobj의 프로토타입링크에 obj 대입
+obj것을 newobj가 상속받음
 
 ex)
 var newobj ={}
 newobj.__proto__ = obj;
-�� �����ƶ�
+와 같은맥락
+
+
+
+http의 한계
+
+일방향 통신.  클라이언트->서버
+- 서버쪽에서 클라이언트 호출 할 수 없다.
+- 브로드캐스팅을 할 수 없다.
+- 클라이언트 to 클라이언트도 통신 불가능하다(매우어렵다)
+단번통신. 한번의 통신후 연결해제
+- 컨텍스트가 필요한 요청을 할 수 없다
+
+ 웹소켓
+- 양방향통신
+- 브로드캐스팅
+- 통신유지가능
+- 클라이언트  to 클라이언트
+
+
+웹소켓서버(nodejs)      웹소켓클라이언트(js)
+
+
+프록시
+- 대리인
+- 단일서버의 한계를 확장할수있다.

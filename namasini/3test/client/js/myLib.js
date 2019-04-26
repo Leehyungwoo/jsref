@@ -58,3 +58,40 @@ String.prototype.trav = function (fnc) {
 Number.prototype.add = function (num) {
     return this + num
 }
+
+function getXHR(callback) {
+    var xhr = new XMLHttpRequest();
+    res = {
+        0: 'unsend',
+        1: 'opend',
+        2: 'header_recived',
+        3: 'loading',
+        4: 'done'
+    }
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                callback(this.responseText)
+            } else {
+                alert('post error')
+            }
+        } else {
+        }
+
+    }
+    return xhr;
+}
+
+
+function post(addr, json, callback) {
+    var xhr = getXHR(callback)
+    xhr.open('POST', addr, true)
+    xhr.send(json)
+}
+
+
+function get(addr, callback) {
+    var xhr = getXHR(callback)
+    xhr.open('get', addr, true)
+    xhr.send('')
+}

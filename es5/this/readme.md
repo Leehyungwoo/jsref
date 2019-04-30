@@ -120,7 +120,7 @@ obj.b();
 
 ```javascript
 function a(x,y,z){
-    console.log(this,x,y,z,)
+    console.log(this,x,y,z)
 }
 
 var b ={c:'eee'}

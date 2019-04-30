@@ -22,17 +22,17 @@ a.c.call(d)
 function add(x,y){
 	var oldx = x,oldy=y;
 	if(typeof oldy === "undefined"){
-		return function(newy){
-			return oldx+newy
+		return function(newy){            // 이부분이커링
+return oldx + newy
 		}
 	}
-	return x+y;
+return x + y;
 }
 add(3)(4)
 
 var add2000 = add(2000)
 add2000(10)
-*/
+    * /
 
 /*
 //위에코드 간단화

@@ -27,21 +27,3 @@ function procRequest(req, res) {
 
 
 
-
-
-
-
-
-function dir(val) { //wrapper 함수
-    console.dir(val)
-}
-
-function log() {  //wrapper 함수
-    var args = arguments;
-    var res = [];
-    for (var i = 0; i < args.length; i++) {
-        res.push(args[i])
-    }
-    console.log(res.join(','))
-}
-

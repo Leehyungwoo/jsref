@@ -107,13 +107,6 @@ var obj = {
     c: 3
 }
 
-Object.prototype.trav = function (fnc) {
-    var self = this;
-    Object.keys(this).trav(function (key, i) {
-        var val = self[key]
-        return fnc(key, val, i)
-    })
-}
 
 obj.trav(function (key, value, index) {
     console.log(key, value, index)

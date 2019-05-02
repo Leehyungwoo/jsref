@@ -14,6 +14,11 @@ Object.prototype.trav = function (fnc) {
     })
 }
 
+String.prototype.trav = function (fnc) {
+    for (var i = 0, lng = this.length; i < lng; i++) {
+        fnc(this[i], i)
+    }
+}
 
 
 function dir(req) {

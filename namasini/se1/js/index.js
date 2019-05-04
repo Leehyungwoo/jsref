@@ -1,21 +1,40 @@
 var elRoot = document.getElementById('elRoot');
-var result = []
 
 
-function stackSeach(searchTarget) {
-    var searchChild = searchTarget.children;
 
-    for (var i = 0, lng = searchChild.length; i < lng; i++) {
-        debugger
-        if (searchChild) {
-            result.push(searchChild[i])
-            stackSeach(searchChild[i])
-        } else {
 
-            return
-        }
+var stack = [];
+stack.push(elRoot)
+
+var res = [];
+traverse()
+console.log(res)
+function traverse() {
+    console.log('length', stack.length)
+    var node = stack.pop();
+    if (node) {
+        res.push(node)
+    } else {
+        return;
     }
-    return result
+    var children = node.children;
+    if (children.length > 0) {
+        for (var i = 0, lng = children.length; i < lng; i++) {
+            stack.push(children[i])
+        }
+    } else {
+        res.push(node)
+    }
+    traverse()
 }
 
-console.log(stackSeach(elRoot))
+
+
+
+
+
+
+
+
+
+

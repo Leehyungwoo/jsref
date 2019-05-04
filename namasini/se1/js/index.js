@@ -11,7 +11,7 @@ traverse()
 console.log(res)
 function traverse() {
     console.log('length', stack.length)
-    var node = stack.pop();
+    var node = stack.shift();
     if (node) {
         res.push(node)
     } else {

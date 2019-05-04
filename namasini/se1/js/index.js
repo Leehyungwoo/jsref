@@ -22,19 +22,6 @@ function traverse() {
         for (var i = 0, lng = children.length; i < lng; i++) {
             stack.push(children[i])
         }
-    } else {
-        res.push(node)
     }
     traverse()
 }
-
-
-
-
-
-
-
-
-
-
-

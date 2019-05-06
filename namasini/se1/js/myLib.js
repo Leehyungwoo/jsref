@@ -1,3 +1,12 @@
+HTMLElement.prototype.traverse = function (fnc) {
+    fnc(this)
+    if (this.children == 0) return;
+    for (var i = 0, lng = this.children.length; i < lng; i++) {
+        var child = this.children[i];
+        child.traverse(fnc);
+    }
+}
+
 Array.prototype.trav = function (fnc) {
     for (var i = 0, lng = this.length; i < lng; i++) {
         var val = this[i]

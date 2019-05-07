@@ -8,32 +8,59 @@
     <title>Document</title>
     <script src="./js/myLib.js"></script>
     <style>
+        td:first-child {
+            text-align: right
+        }
 
+        input {
+            padding: 7px;
+        }
+
+        select {
+            padding: 7px;
+        }
     </style>
-
 </head>
 
 <body>
     <div id="elRoot">
-        <h1>Hello, world!!</h1>
+        <table>
+            <tr>
+                <td>이름</td>
+                <td><input id="iptName" type="text"></td>
+            </tr>
+            <tr>
+                <td>비밀번호:</td>
+                <td><input id="iptSecretNumber" type="password"></td>
+            </tr>
+            <tr>
+                <td>비밀번호:</td>
+                <td><input id="iptSecretNumberConfirm" type="password"></td>
+                <span id="elConfirm"></span>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td>
+                    <select id="selGender">
+                        <option value="female">여</option>
+                        <option value="male">남</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div id="elMsg">
+
+        </div>
         <div id="first" class="common">
             <span>저는 first입니다</span>
-            <button>버튼</button>
-        </div>
-        <div id="second" class="common">
-            <!-- <h1>여기는 second</h1> -->
-            저는 블럭이에요
-        </div>
-        <div>
-            <span id="elInlineBlock">저는 인라인이에요</span>
-            <span id="elInline">저는 블럭이에요</span>
-
+            <button id='btnButton'>버튼</button>
         </div>
     </div>
 
 
 
     <script src="./js/index.js"></script>
+
 </body>
 
 </html>

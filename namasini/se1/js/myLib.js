@@ -6,7 +6,16 @@ HTMLElement.prototype.traverse = function (fnc) {
         child.traverse(fnc);
     }
 }
-
+HTMLElement.prototype.css = function (str) {
+    this.style.cssText += str;
+}
+HTMLElement.prototype.html = function (str, opt) {
+    if (arguments.length === 0) {
+        return this.innerHTML;
+    }
+    if (opt) this.innerHTML += str;
+    else this.innerHTML = str;
+}
 Array.prototype.trav = function (fnc) {
     for (var i = 0, lng = this.length; i < lng; i++) {
         var val = this[i]

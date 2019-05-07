@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/myLib.js"></script>
+    <style>
+        td:first-child {
+            text-align: right
+        }
+
+        input {
+            padding: 7px;
+        }
+
+        select {
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="elRoot">
+        <table>
+            <tr>
+                <td>이름</td>
+                <td><input id="iptName" type="text"></td>
+            </tr>
+            <tr>
+                <td>비밀번호:</td>
+                <td><input id="iptSecretNumber" type="password"></td>
+            </tr>
+            <tr>
+                <td>비밀번호:</td>
+                <td><input id="iptSecretNumberConfirm" type="password"></td>
+                <span id="elConfirm"></span>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td>
+                    <select id="selGender">
+                        <option value="female">여</option>
+                        <option value="male">남</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div id="elMsg">
+
+        </div>
+        <div id="first" class="common">
+            <span>저는 first입니다</span>
+            <button id='btnButton'>버튼</button>
+        </div>
+    </div>
+
+
+
+    <script src="./js/index.js"></script>
+
+</body>
+
+</html>

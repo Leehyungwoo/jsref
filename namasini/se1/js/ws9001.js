@@ -11,7 +11,9 @@ function callback(conn, err) {
     }
 
     conn.on('text', function (str) {
+        console.log('client message')
         console.log(str)
+        conn.sendText(str)
     })
     conn.on('error', function (err) {
         console.dir(err)

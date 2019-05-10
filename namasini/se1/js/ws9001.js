@@ -1,19 +1,14 @@
-var ws = require("nodejs-websocket")
-var server = ws.createServer(callback).listen(9001);
+var ws = require("nodejs-websocket"),
+    server = ws.createServer(callback).listen(9001);
 
 function callback(conn, err) {
-    if (err) {
-        //connection failted!!
-        console.dir(err)
-    } else {
-        //connection success!
-        console.log('connection success')
-    }
+    if (err) console.dir(err)
+    else console.log('connection success')
+
 
     conn.on('text', function (str) {
-        console.log('client message')
-        console.log(str)
-        conn.sendText(str)
+        propcText(conn, str)
+
     })
     conn.on('error', function (err) {
         console.dir(err)
@@ -22,5 +17,24 @@ function callback(conn, err) {
         console.dir(code)
         console.dir(reason)
     })
+
+}
+
+global.add = function (conn, obj) {
+
+    obj.response = obj.a + obj.b
+    console.log(obj)
+    send(conn, obj)
+}
+
+
+function send(conn, obj) {
+    var res = JSON.stringify(obj)
+    conn.sendText(res)
+}
+
+function propcText(conn, str) {
+    var obj = JSON.parse(str)
+    global[obj.command](conn, obj)
 
 }

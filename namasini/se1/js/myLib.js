@@ -95,5 +95,63 @@ function post(addr, json, callback) {
 }
 
 
+//웹소켓
+
+
+function WS(addr, fnc) {
+    // var addr = 'ws://localhost:9001'
+    var ws = new WebSocket(addr)
+    var self = this;
+    var id = 0;
+    var callbacks = {};
+    this.onopen = function () {
+
+    }
+    this.onerror = function () {
+
+    }
+    this.onclose = function () {
+
+    }
+    this.onmessage = function () {
+
+    }
+    this.send = function (str, fnc) {
+        ws.send(str)
+        callbacks[id++] = fnc
+    }
+    this.call = function (obj, fnc) {
+        obj.__id = id;
+        callbacks[id++] = fnc;
+        console.dir(obj)
+        var str = JSON.stringify(obj)
+        ws.send(str)
+    }
+
+    ws.onopen = function () {
+        console.log('socket opend!!')
+        self.onopen()
+        fnc()
+        // ws.send('hello world')
+    }
+
+    ws.onerror = function (str) {
+        console.log(str)
+    }
+    ws.onclose = function (str) {
+        console.log(str)
+    }
+    ws.onmessage = function (msg) {
+        //callback(str.data)
+        var str = msg.data;
+        var obj = JSON.parse(str)
+        callbacks[obj.__id](obj)
+    }
+
+}
+
+
+
+
 
 

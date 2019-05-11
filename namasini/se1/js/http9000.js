@@ -22,8 +22,8 @@ function procRequest(req, res) {
     if (req.url === "/") {
         req.url = "/index.html"
     }
-    var addr = documentRoot + req.url;
-    var con = fs.readFileSync(addr)
+    // var addr = documentRoot + req.url;
+    // var con = fs.readFileSync(addr)
 
     proxypass('http://localhost:9002', function (con) {
         res.write(con)

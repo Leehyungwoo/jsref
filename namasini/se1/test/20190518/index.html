@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    인덱스페이지
+    <script>
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.response)
+                var table = document.createElement('table');
+                for (var i = 0, lng = data.length; i < lng; i++) {
+                    var tr = document.createElement('tr');
+                    table.appendChild(tr)
+                    for (var key in data[i]) {
+                        var td = document.createElement('td');
+                        tr.appendChild(td)
+                        td.innerHTML = data[i][key]
+                    }
+                }
+                document.body.appendChild(table)
+            }
+        };
+        xhttp.open("GET", "http://127.0.0.1:8000/reciveData", true);
+        xhttp.send();
+    </script>
+</body>
+
+</html>

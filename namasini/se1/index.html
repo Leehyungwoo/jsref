@@ -8,25 +8,74 @@
     <title>Document</title>
     <script src="./js/myLib.js"></script>
     <style>
-        td:first-child {
-            text-align: right
-        }
-
         input {
-            padding: 7px;
+            padding: 5px;
         }
 
         select {
-            padding: 7px;
+            padding: 5px;
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center
         }
     </style>
 </head>
 
 <body>
-    <div id="elRoot">
+    <div class="wrap">
+        <h1>나의 친구목록</h1>
+        <div style="width:100%;text-align:right;font-size:13px;color:skyblue">
+            <span id="btnFold">-닫기</span>
+        </div>
+        <div id="elInput">
+            <table style="margin:0 auto; font-size:13px;">
+                <tr>
+                    <td style="text-align: right">
+                        이름:
+                    </td>
+                    <td style="text-align: left">
+                        <input placeholder="이름을 넣으세요">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">
+                        나이:
+                    </td>
+                    <td style="text-align: left">
+                        <input placeholder="나이를 넣으세요">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">
+                        성별
+                    </td>
+                    <td style="text-align: left">
+                        <select>
+                            <option value="male">남</option>
+                            <option value="female">여</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">
+                        직업:
+                    </td>
+                    <td style="text-align: left">
+                        <input placeholder="직업을 입력하세요">
+                    </td>
+                </tr>
+            </table>
+            <div style="margin-bottom:20px;text-align: right">
+                <button id="btnInsert">입력</button>
+            </div>
+        </div>
 
+        <div id="elRoot" style="width:100%">
+        </div>
     </div>
-
 
 
     <script src="./js/index.js"></script>

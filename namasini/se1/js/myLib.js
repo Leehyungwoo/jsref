@@ -88,7 +88,13 @@ function get(addr, callback) {
     xhr.send()
 }
 
-function post(addr, json, callback) {
+function post(addr, obj, callback) {
+    var json = [];
+    obj.trav((key, val) => {
+        json.push(key + '=' + val)
+    })
+    json = json.join('&')
+    console.log(json)
     var xhr = getXHR(callback)
     xhr.open('post', addr, true);
     xhr.send(json)

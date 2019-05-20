@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-
+const qs = require('querystring');
 const documentRoot = 'C:/jsref/namasini/se1';
 
 var mysql = require('mysql');
@@ -9,11 +9,28 @@ var mysql = require('mysql');
 
 http.createServer(function (req, res) {
     console.log('connection')
-    try {
-        procRequest(req, res)
-    } catch (e) {
-        console.log('에러')
-        console.dir(e)
+    if (req.method === "POST") {
+        var body = "";
+        req.on('data', function (obj) {
+            body += obj
+        })
+        req.on('end', function () {
+            try {
+                req.POST_MSG = body
+                procRequest(req, res)
+            } catch (e) {
+                console.log('에러')
+
+            }
+        })
+    } else {
+
+        try {
+            procRequest(req, res)
+        } catch (e) {
+            console.log('에러')
+
+        }
     }
 
 }).listen(9000)
@@ -22,11 +39,37 @@ http.createServer(function (req, res) {
 function procRequest(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html', "Access-Control-Allow-Origin": "*" })
 
-    getData('select * from city;', result => {
-        var con = JSON.stringify(result)
-        res.write(con)
-        res.end()
-    })
+    if (req.method === "POST") {
+        var post = qs.parse(req.POST_MSG)
+        if (post.__command === "insert") {
+            var cols = ["name", "age", "gender", "job"];
+            var arr = [];
+            cols.forEach(key => {
+                arr.push("'" + post[key] + "'");
+            })
+
+
+            var sql = "insert into friends values (2," + arr.join(',') + ")";
+
+            getData(sql, result => {
+                //var con = JSON.stringify(result)
+                console.log('callback')
+                console.dir(result)
+                res.write("okay")
+                res.end()
+            })
+
+        }
+    }
+    // res.write('okey');
+    // res.end();
+
+
+    // getData('select * from friends;', result => {
+    //     var con = JSON.stringify(result)
+    //     res.write(con)
+    //     res.end()
+    // })
 
 
 
@@ -62,7 +105,7 @@ function getData(sql, callback) {
         host: 'localhost',
         user: 'root',
         password: '1234',
-        database: 'world'
+        database: 'youtube'
     });
 
     connection.connect();

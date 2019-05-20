@@ -71,7 +71,7 @@ function getXHR(callback) {
         // console.log('server response', this.response)
         if (this.readyState === 4) {
             if (this.status === 200) {
-                callback(this.responseText)
+                callback(this.response)
             } else {
                 alert('post error!!')
             }
@@ -94,7 +94,6 @@ function post(addr, obj, callback) {
         json.push(key + '=' + val)
     })
     json = json.join('&')
-    console.log(json)
     var xhr = getXHR(callback)
     xhr.open('post', addr, true);
     xhr.send(json)

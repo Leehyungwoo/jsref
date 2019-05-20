@@ -1,3 +1,13 @@
+var obj = {
+    __command: 'select'
+}
+
+post('http://localhost:9000', obj, (result) => {
+    var data = JSON.parse(result);
+    setList(data)
+})
+
+
 btnFold.onclick = function () {
     if (!this.isFold) {
         elInput.css('display:none;');
@@ -11,7 +21,6 @@ btnFold.onclick = function () {
 btnFold.onmousemove = function () {
     this.css('cursor:pointer;')
 }
-
 btnInsert.onclick = function () {
     var res = [],
         arr = ['name', 'age', 'gender', 'job'],
@@ -27,15 +36,13 @@ btnInsert.onclick = function () {
         obj[el] = res[i]
     })
     obj.__command = "insert";
-    post('http://localhost:9000', obj, data => {
-        console.log(data)
+
+    post('http://localhost:9000', obj, result => {
+        console.log(result)
+        location.href = location.href
     })
 }
 
-// post('http://localhost:9000', {}, (result) => {
-//     var data = JSON.parse(result);
-//     setList(data)
-// })
 
 
 function setList(data) {

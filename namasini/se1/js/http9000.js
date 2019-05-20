@@ -41,28 +41,14 @@ function procRequest(req, res) {
 
     if (req.method === "POST") {
         var post = qs.parse(req.POST_MSG)
+
         if (post.__command === "insert") {
-            var cols = ["name", "age", "gender", "job"];
-            var arr = [];
-            cols.forEach(key => {
-                arr.push("'" + post[key] + "'");
-            })
-
-
-            var sql = "insert into friends values (2," + arr.join(',') + ")";
-
-            getData(sql, result => {
-                //var con = JSON.stringify(result)
-                console.log('callback')
-                console.dir(result)
-                res.write("okay")
-                res.end()
-            })
-
+            opInsert(res, post)
+        } else if (post.__command === "select") {
+            opSelect(res, post)
         }
     }
-    // res.write('okey');
-    // res.end();
+
 
 
     // getData('select * from friends;', result => {
@@ -84,7 +70,31 @@ function procRequest(req, res) {
     // })
 
 }
+function opSelect(res, post) {
+    var sql = "select * from friends order by id desc;";
 
+    getData(sql, result => {
+        var str = JSON.stringify(result)
+        send(res, str)
+    })
+}
+function opInsert(res, post) {
+    var cols = ["name", "age", "gender", "job"];
+    var arr = [];
+    cols.forEach(key => {
+        arr.push("'" + post[key] + "'");
+    })
+
+    getData("select max(id) as id from friends;", result => {
+
+        var max = result[0].id;
+
+        var sql = "insert into friends values (" + (max + 1) + "," + arr.join(',') + ")";
+        getData(sql, result => {
+            send(res, 'okay')
+        })
+    })
+}
 function proxypass(url, fnc) {
     http.get(url, function (res) {
         var content = "";
@@ -99,7 +109,10 @@ function proxypass(url, fnc) {
     });
 
 }
-
+function send(res, str) {
+    res.write(str)
+    res.end()
+}
 function getData(sql, callback) {
     var connection = mysql.createConnection({
         host: 'localhost',
@@ -107,7 +120,6 @@ function getData(sql, callback) {
         password: '1234',
         database: 'youtube'
     });
-
     connection.connect();
     connection.query(sql, function (error, results, fields) {
         if (error) {
@@ -116,8 +128,6 @@ function getData(sql, callback) {
 
         }
         callback(results)
-
         connection.end();
     });
-
 }

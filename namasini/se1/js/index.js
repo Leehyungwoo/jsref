@@ -2,8 +2,6 @@ var raw;
 var objRaw = {}
 var curId;
 
-
-
 var obj = {
     __command: 'select'
 }
@@ -58,8 +56,16 @@ btnInsert.onclick = function () {
         location.href = location.href
     })
 }
+btnDelete.onclick = function () {
+    var obj = {
+        __command: 'delete',
+        id: curId
+    }
 
-
+    post('http://localhost:9000', obj, result => {
+        location.href = location.href
+    })
+}
 
 function setList(data) {
     mkTable(data, elRoot)
@@ -86,9 +92,11 @@ function mkRow(idx, parent, obj, opt) {
     if (idx != 0 && idx % 2 == 1) {
         tr.css('background-color:#eee');
     }
-    obj.trav((key, obj, j) => {
+    obj.trav((key, val, j) => {
+        if (key === "delYn") { return } //delYn 제거
         var td = mkEl('td', tr)
-        td.html(opt ? key : obj)
+        td.css('font-size:13px; text-aign:center; padding:5px;')
+        td.html(opt ? key : val)
 
         td.onmousemove = function () {
             var els = this.parentNode.children;
@@ -113,7 +121,7 @@ function mkRow(idx, parent, obj, opt) {
             iptAge.value = datum.age;
             selectGender.value = datum.gender;
             iptJob.value = datum.job;
-
+            btnDelete.css('display:inline')
             btnInsert.html("수정")
         };
     })

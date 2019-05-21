@@ -48,6 +48,8 @@ function procRequest(req, res) {
             opSelect(res, post)
         } else if (post.__command === "update") {
             opUpdate(res, post)
+        } else if (post.__command === "delete") {
+            opDelete(res, post)
         }
     }
 
@@ -72,7 +74,14 @@ function procRequest(req, res) {
     // })
 
 }
+function opDelete(res, post) {
 
+    var sql = "update friends set delYn='Y' where id = " + post.id + ";";
+
+    getData(sql, result => {
+        send(res, 'okay')
+    })
+}
 
 function opUpdate(res, post) {
 
@@ -85,30 +94,36 @@ function opUpdate(res, post) {
 
 
 function opSelect(res, post) {
-    var sql = "select * from friends order by id desc;";
+    var sql = "select * from friends where delYn='N' order by id desc;";
 
     getData(sql, result => {
+        // result.map(val => {delete val.delYn})
         var str = JSON.stringify(result)
         send(res, str)
     })
 }
 function opInsert(res, post) {
-    var cols = ["name", "age", "gender", "job"];
+    var cols = ["name", "age", "gender", "job"]; //delYn
     var arr = [];
     cols.forEach(key => {
         arr.push("'" + post[key] + "'");
     })
-
+    arr.push("'N'")
     getData("select max(id) as id from friends;", result => {
 
         var max = result[0].id;
-
+        console.log(max)
         var sql = "insert into friends values (" + (max + 1) + "," + arr.join(',') + ")";
         getData(sql, result => {
             send(res, 'okay')
         })
     })
 }
+
+
+
+
+
 function proxypass(url, fnc) {
     http.get(url, function (res) {
         var content = "";

@@ -1,134 +1,65 @@
-var raw;
-var objRaw = {}
-var curId;
+var ctx = elCanvas.getContext('2d');
 
-var obj = {
-    __command: 'select'
-}
-
-post('http://localhost:9000', obj, (result) => {
-    var data = JSON.parse(result);
-    raw = data;
-    raw.trav(el => {
-        objRaw[el.id] = el
-    })
-
-    setList(data)
-})
+var income = [100, 30, 35, 40, 10, 170, 165];
 
 
-btnFold.onclick = function () {
-    if (!this.isFold) {
-        elInput.css('display:none;');
-        this.innerHTML = "+열기"
-    } else {
-        elInput.css('display:block;');
-        this.innerHTML = "-닫기"
-    }
-    this.isFold = !this.isFold;
-}
-btnFold.onmousemove = function () {
-    this.css('cursor:pointer;')
-}
-btnInsert.onclick = function () {
-    var res = [],
-        arr = ['name', 'age', 'gender', 'job'],
-        obj = {}
-    elInput.traverse(el => {
-        if (el.tagName === 'INPUT') {
-            res.push(el.value)
-        } else if (el.tagName === "SELECT") {
-            res.push(el.value)
-        }
-    })
-    arr.trav((el, i) => {
-        obj[el] = res[i]
-    })
-    if (this.html() === "입력") {
-        obj.__command = "insert";
-    } else if (this.html() === "수정") {
-        obj.id = curId;
-        obj.__command = "update";
+ctx.beginPath();
+ctx.rect(10, 10, 300, 100);
+ctx.strokeStyle = "red";
+ctx.stroke();
+ctx.fillStyle = "gray";
+ctx.fill();
+
+drawLine(new XY(10, 60), new XY(310, 60))
+
+
+function mkChart(income) {
+    var interval = 60;
+    var padding = 20
+    var prevXY;
+    var bottom = 240;
+
+
+    for (var i = 0, lng = 4; i < lng; i++) {
+        var num = i * 60;
+        drawLine(new XY(0, bottom - num), new XY(400, bottom - num))  //x축
     }
 
-    post('http://localhost:9000', obj, result => {
-        console.log(result)
-        location.href = location.href
-    })
-}
-btnDelete.onclick = function () {
-    var obj = {
-        __command: 'delete',
-        id: curId
+    for (var i = 0, lng = 4; i < lng; i++) {
+        var num = i * 100;
+        drawLine(new XY(num, 0), new XY(num, bottom))  //y축
     }
 
-    post('http://localhost:9000', obj, result => {
-        location.href = location.href
-    })
-}
 
-function setList(data) {
-    mkTable(data, elRoot)
-}
+    income.trav((num, i) => {
+        // var from = new XY(i * interval, 0);
+        // var to = new XY(i * interval, num);
+        var xy = new XY(i * interval + padding, bottom - num);
 
-function mkTable(arr, parent) {
-    //arr : object array
-    var table = mkEl('table', parent);
-    table.css('width: 100%;')
-    arr.trav((obj, i) => {
         if (i === 0) {
-            mkRow(-1, table, obj, true);
+            ctx.moveTo(xy.x, xy.y)
+        } else {
+            drawLine(prevXY, xy, 'blue')
         }
-        mkRow(i, table, obj);
+        prevXY = xy;
+
+        // drawLine(from, to, "blue");
     })
+
+
+
+
+
+
 }
-
-function mkRow(idx, parent, obj, opt) {
-    var tr = mkEl('tr', parent);
-    if (idx === -1) {
-        tr.css('background-color:gray;text-align:center;color:#eee');
-
-    }
-    if (idx != 0 && idx % 2 == 1) {
-        tr.css('background-color:#eee');
-    }
-    obj.trav((key, val, j) => {
-        if (key === "delYn") { return } //delYn 제거
-        var td = mkEl('td', tr)
-        td.css('font-size:13px; text-aign:center; padding:5px;')
-        td.html(opt ? key : val)
-
-        td.onmousemove = function () {
-            var els = this.parentNode.children;
-            for (var i = 0, lng = els.length; i < lng; i++) {
-                var el = els[i];
-                el.css('text-decoration:underline; cursor:pointer;')
-            }
-        };
-        td.onmouseout = function () {
-            var els = this.parentNode.children;
-            for (var i = 0, lng = els.length; i < lng; i++) {
-                var el = els[i];
-                el.css('text-decoration:none;')
-            }
-        }
-        td.onclick = function () {
-            var id = this.parentNode.children[0].html();
-            var datum = objRaw[id];
-
-            curId = datum.id;
-            iptName.value = datum.name;
-            iptAge.value = datum.age;
-            selectGender.value = datum.gender;
-            iptJob.value = datum.job;
-            btnDelete.css('display:inline')
-            btnInsert.html("수정")
-        };
-    })
+function drawLine(from, to, color) {
+    ctx.beginPath();  //새로그리기 시작
+    ctx.moveTo(from.x, from.y);  //커서 이동
+    ctx.lineTo(to.x, to.y); //이전 위치에서 현 위치로 라인생성
+    ctx.strokeStyle = color ? color : "black";
+    ctx.stroke(); //와곽선을 그어라
 }
-
-function mkEl(tagName, parent) {
-    var el = document.createElement(tagName)
-    parent.appendChild(el)
-    return el
+function XY(x, y) {
+    this.x = x;
+    this.y = y;
 }

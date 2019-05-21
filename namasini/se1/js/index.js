@@ -1,9 +1,20 @@
+var raw;
+var objRaw = {}
+var curId;
+
+
+
 var obj = {
     __command: 'select'
 }
 
 post('http://localhost:9000', obj, (result) => {
     var data = JSON.parse(result);
+    raw = data;
+    raw.trav(el => {
+        objRaw[el.id] = el
+    })
+
     setList(data)
 })
 
@@ -35,7 +46,12 @@ btnInsert.onclick = function () {
     arr.trav((el, i) => {
         obj[el] = res[i]
     })
-    obj.__command = "insert";
+    if (this.html() === "입력") {
+        obj.__command = "insert";
+    } else if (this.html() === "수정") {
+        obj.id = curId;
+        obj.__command = "update";
+    }
 
     post('http://localhost:9000', obj, result => {
         console.log(result)
@@ -73,6 +89,33 @@ function mkRow(idx, parent, obj, opt) {
     obj.trav((key, obj, j) => {
         var td = mkEl('td', tr)
         td.html(opt ? key : obj)
+
+        td.onmousemove = function () {
+            var els = this.parentNode.children;
+            for (var i = 0, lng = els.length; i < lng; i++) {
+                var el = els[i];
+                el.css('text-decoration:underline; cursor:pointer;')
+            }
+        };
+        td.onmouseout = function () {
+            var els = this.parentNode.children;
+            for (var i = 0, lng = els.length; i < lng; i++) {
+                var el = els[i];
+                el.css('text-decoration:none;')
+            }
+        }
+        td.onclick = function () {
+            var id = this.parentNode.children[0].html();
+            var datum = objRaw[id];
+
+            curId = datum.id;
+            iptName.value = datum.name;
+            iptAge.value = datum.age;
+            selectGender.value = datum.gender;
+            iptJob.value = datum.job;
+
+            btnInsert.html("수정")
+        };
     })
 }
 

@@ -46,6 +46,8 @@ function procRequest(req, res) {
             opInsert(res, post)
         } else if (post.__command === "select") {
             opSelect(res, post)
+        } else if (post.__command === "update") {
+            opUpdate(res, post)
         }
     }
 
@@ -70,6 +72,18 @@ function procRequest(req, res) {
     // })
 
 }
+
+
+function opUpdate(res, post) {
+
+    var sql = "update friends set name='" + post.name + "', age = " + post.age + ", gender = '" + post.gender + "', job='" + post.job + "'  where id = " + post.id + ";";
+
+    getData(sql, result => {
+        send(res, 'okay')
+    })
+}
+
+
 function opSelect(res, post) {
     var sql = "select * from friends order by id desc;";
 

@@ -16,6 +16,10 @@ HTMLElement.prototype.html = function (str, opt) {
     if (opt) this.innerHTML += str;
     else this.innerHTML = str;
 }
+// HTMLElement.prototype.trav=function(){
+
+// }
+
 Array.prototype.trav = function (fnc) {
     for (var i = 0, lng = this.length; i < lng; i++) {
         var val = this[i]

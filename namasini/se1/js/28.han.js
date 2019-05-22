@@ -3,9 +3,7 @@ function main() {
     var str = "가나다라마바사";
     var arr = [];
     str.trav((chr, i) => {
-
         var num = str.charCodeAt(i); //문자의 코드번호 출력
-
         arr.push([chr, num])
     })
 
@@ -15,18 +13,18 @@ function main() {
         ar.push(ar[1] - arr[i - 1][1])
     })
 
+    var ki = 12593; //    log(cca('ㄱ'))
+    var ii = 12643; //    log(cca('ㅣ'))
+    log(ki, ii)
 
-    // around(14000, i => {
-    //     str += String.fromCharCode(44032 + i)
-    // })
-    // contents.html(str)
-    log(cca('ㄱ'))
-    var ki = 12593;
+    var str = 44032;
+    var end = 55203;
+
     var str = ""
     around(100, i => {
         str += fcc(ki + i)
     })
-    console.log(str)
+    contents.html(str)
 
 }
 function fcc(num) {

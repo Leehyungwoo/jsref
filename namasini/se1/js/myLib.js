@@ -56,7 +56,12 @@ function log() {  //wrapper 함수
     console.log(res.join(','))
 }
 
+function around(num, fnc) {
+    for (var i = 0; i < num; i++) {
+        fnc(i)
+    }
 
+}
 
 //통신분야
 function getXHR(callback) {

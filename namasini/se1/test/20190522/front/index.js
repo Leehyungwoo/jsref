@@ -1,8 +1,25 @@
 ajax("post", "http://127.0.0.1:3000/", function (data) {
+    alert('ajax가능')
     var data = JSON.parse(data)
-    setList(data)
+    // setList(data)
+    alert(data)
 })
 
+
+
+
+
+function ajax(methods, address, callback) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.response;
+            callback(response)
+        }
+    };
+    xhttp.open(methods, address, true);
+    xhttp.send();
+}
 
 
 HTMLElement.prototype.css = function (str) {

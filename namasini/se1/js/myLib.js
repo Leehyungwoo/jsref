@@ -6,9 +6,6 @@ HTMLElement.prototype.traverse = function (fnc) {
         child.traverse(fnc);
     }
 }
-HTMLElement.prototype.css = function (str) {
-    this.style.cssText += str;
-}
 HTMLElement.prototype.html = function (str, opt) {
     if (arguments.length === 0) {
         return this.innerHTML;
@@ -16,6 +13,10 @@ HTMLElement.prototype.html = function (str, opt) {
     if (opt) this.innerHTML += str;
     else this.innerHTML = str;
 }
+HTMLElement.prototype.css = function (str) {
+    this.style.cssText += str;
+}
+
 // HTMLElement.prototype.trav=function(){
 
 // }

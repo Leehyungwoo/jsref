@@ -1,3 +1,6 @@
+// #1. web server (192.168.0.7) -삼성컴/ubuntu
+// #2 mysql server (192.168.0.15)  -LG컴/windows10
+
 HTMLElement.prototype.traverse = function (fnc) {
     fnc(this)
     if (this.children == 0) return;
@@ -21,6 +24,34 @@ HTMLElement.prototype.css = function (str) {
 
 // }
 
+//정렬함수
+Array.prototype.asc = function (col) {
+
+    if (col == undefined) {
+        this.sort((a, b) => {
+            if (a < b) return -1
+        });
+    } else {
+        this.sort((a, b) => {
+            if (a[col] < b[col]) return -1;
+        })
+    }
+}
+
+Array.prototype.desc = function (col) {
+    if (col == undefined) {
+        this.sort((a, b) => {
+            if (a > b) return -1
+        });
+    } else {
+        this.sort((a, b) => {
+            if (a[col] > b[col]) return -1;
+        })
+    }
+}
+
+
+//순회
 Array.prototype.trav = function (fnc) {
     for (var i = 0, lng = this.length; i < lng; i++) {
         var val = this[i]

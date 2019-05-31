@@ -1,12 +1,7 @@
-ajax("post", "http://127.0.0.1:3000/", function (data) {
-    alert('ajax가능')
-    var data = JSON.parse(data)
-    // setList(data)
-    alert(data)
+ajax("post", "http://127.0.0.1:3000/", "reciveDataMount=10&pageNum=2", function (data) {  //여기서 페이징으로 던지면 됌
+    var data = JSON.parse(data);
+    setList(data)
 })
-
-
-
 
 
 function ajax(methods, address, callback) {
@@ -21,11 +16,9 @@ function ajax(methods, address, callback) {
     xhttp.send();
 }
 
-
 HTMLElement.prototype.css = function (str) {
     this.style.cssText = str
 }
-
 
 
 function setList(data) {
@@ -45,10 +38,12 @@ function mkTable(parent, data) {
 }
 
 function mkTr(parent, data) {
-    for (var i = 0, lng = data.length + 1; i < lng; i++) {
+    for (var i = 0, lng = data.length - 1; i < lng; i++) {
         if (i === 0) {
             var tr = createElement(parent, 'tr')
             mkTh(tr, data[i])
+            var tr = createElement(parent, 'tr')
+            mkTd(tr, data[i])
         } else {
             var tr = createElement(parent, 'tr')
             mkTd(tr, data[i])
@@ -68,11 +63,7 @@ function mkTd(parent, colData) {
     }
 }
 
-
-
-
-
-function ajax(methods, address, callback) {
+function ajax(methods, address, param, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -81,5 +72,7 @@ function ajax(methods, address, callback) {
         }
     };
     xhttp.open(methods, address, true);
-    xhttp.send();
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(param);
 }
+

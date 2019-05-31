@@ -4,13 +4,13 @@ function getDate(sql, callback) {
         host: 'localhost',
         user: 'root',
         password: '1234',
-        database: 'youtube'
+        database: 'world'
     });
     connection.connect();
 
     connection.query(sql, function (error, results, fields) {
         if (error) throw error;
-        callback(results)
+        callback(results);
         connection.end();
     });
 

@@ -70,8 +70,9 @@ HTMLElement.prototype.mkTag = function (tagName, p) {
     return tag;
 }
 
+post('http://localhost:9000', {}, data => {
 
-post('data/data.csv', {}, data => {
+    console.log(data)
     mkArr(data)
     mkList(data)
 })

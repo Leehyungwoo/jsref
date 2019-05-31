@@ -9,6 +9,8 @@ var mysql = require('mysql');
 
 http.createServer(function (req, res) {
     console.log('connection')
+
+
     if (req.method === "POST") {
         var body = "";
         req.on('data', function (obj) {
@@ -19,6 +21,7 @@ http.createServer(function (req, res) {
                 req.POST_MSG = body
                 procRequest(req, res)
             } catch (e) {
+
                 console.log('에러')
 
             }
@@ -28,6 +31,7 @@ http.createServer(function (req, res) {
         try {
             procRequest(req, res)
         } catch (e) {
+
             console.log('에러')
 
         }
@@ -42,6 +46,10 @@ function procRequest(req, res) {
     if (req.method === "POST") {
         var post = qs.parse(req.POST_MSG)
 
+        getData('select * from city;', data => {
+            var str = JSON.stringify(data);
+            send(res, str)
+        })
         if (post.__command === "insert") {
             opInsert(res, post)
         } else if (post.__command === "select") {
@@ -147,7 +155,7 @@ function getData(sql, callback) {
         host: 'localhost',
         user: 'root',
         password: '1234',
-        database: 'youtube'
+        database: 'world'
     });
     connection.connect();
     connection.query(sql, function (error, results, fields) {

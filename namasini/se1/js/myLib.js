@@ -1,5 +1,6 @@
 // #1. web server (192.168.0.7) -삼성컴/ubuntu
 // #2 mysql server (192.168.0.15)  -LG컴/windows10
+// #. nodejs mysql 접속
 
 HTMLElement.prototype.traverse = function (fnc) {
     fnc(this)

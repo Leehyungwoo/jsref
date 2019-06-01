@@ -11,12 +11,10 @@ const server = http.createServer((req, res) => {
             var { reciveDataMount, pageNum } = postData;
 
 
-            getDate('select * from city;', function (obj) {
-                var dataLen = obj.length;
-                var start = reciveDataMount * pageNum;
+            getDate('SELECT COUNT(id) FROM city;', function (obj) { // 데이터 총량
 
-                console.log(start)
-                console.log(reciveDataMount)
+                var dataLen = obj[0]["COUNT(id)"]
+                var start = reciveDataMount * pageNum;
 
                 getDate(`SELECT * FROM city WHERE id>=${start} limit ${reciveDataMount} `, function (arr) {
                     arr.push({ dataLen: dataLen });

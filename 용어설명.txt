@@ -1,4 +1,5 @@
-﻿큐:FIFO  (first in first out)  (unshift, shift)
+﻿깃 테스트
+큐:FIFO  (first in first out)  (unshift, shift)
 스택:LIFO (last in first out)   (push,pop)
 
 선형탐색(Linear Search) (앞에서부터 끝까지. ex for문)
